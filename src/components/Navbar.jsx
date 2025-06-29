@@ -1,12 +1,15 @@
 "use client"
+import { useAppContext } from '@/app/context/AppContext';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 import React from 'react'
 
 function Navbar() {
   const pathName = usePathname();
+  const {user} =useAppContext();
 
-  console.log(pathName)
+
+
   if (pathName.includes('users') || pathName.includes('admin')) {
     return <>
 
@@ -43,7 +46,7 @@ function Navbar() {
          <Link className='mr-4' href={'/users'}>Dashboard</Link>
          <Link className='mr-4' href={'/signup'}>SignUp</Link>
          <Link className='mr-4' href={'/signin'}>Signin</Link>
-         <Link href={'/*'}>P</Link>
+         <Link href={'/*'}>{user?.name? 'Hi' : 'P'}</Link>
         </div>
       </div >
     </div>

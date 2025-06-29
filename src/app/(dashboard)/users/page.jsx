@@ -1,7 +1,11 @@
+'use client'
+import { useAppContext } from '@/app/context/AppContext'
 import Link from 'next/link'
 import React from 'react'
 
 function page() {
+  const {user} =useAppContext();
+  console.log(user);
   return (
     <div className=''> 
         <ul className="menu menu-md z-1 mt-3 p-2 text-black ">

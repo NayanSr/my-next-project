@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { AppContextProvider } from "./context/AppContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,8 +24,19 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar/>
-        {children}
+        <AppContextProvider>
+          <div className="min-h-screen flex flex-col justify-between">
+            <Navbar />
+            <div>
+              {children}
+            </div>
+            <div className="w-full mx-auto py-8 bg-gray-400 ">
+              <p className="max-w-7xl text-center text-3xl text-black bg-amber-100 mx-auto">Add a Footer</p>
+            </div>
+
+          </div>
+        </AppContextProvider>
+
       </body>
     </html>
   );
