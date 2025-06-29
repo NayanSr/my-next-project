@@ -41,6 +41,8 @@ function Navbar() {
       </div> */}
         <div className="navbar-end">
          <Link className='mr-4' href={'/users'}>Dashboard</Link>
+         <Link className='mr-4' href={'/signup'}>SignUp</Link>
+         <Link className='mr-4' href={'/signin'}>Signin</Link>
          <Link href={'/*'}>P</Link>
         </div>
       </div >
