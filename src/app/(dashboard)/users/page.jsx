@@ -3,11 +3,12 @@ import React from 'react'
 
 function page() {
   return (
-    <div className='text-black'> 
-      <li><Link href='users/user-1'>User1</Link></li>
-      <li><Link href='users/user-2'>User2</Link></li>
-      <li><Link href='users/user-3'>User3</Link></li>
-      <li><Link href='users/user-4'>User4</Link></li>
+    <div className=''> 
+        <ul className="menu menu-md z-1 mt-3 p-2 text-black ">
+                <li><Link href={'/users/user-1'}>User-01</Link></li>
+                <li><Link href={'/users/user-2'}>Users-02</Link></li>
+                <li><Link href={'/users/user-3'}>User-03</Link></li>
+              </ul>
     </div>
   )
 }
