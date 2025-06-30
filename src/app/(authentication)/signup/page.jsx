@@ -2,18 +2,19 @@
 import Image from 'next/image';
 import registerImage from '../../../../public/signup.jpg'
 import Link from 'next/link';
+import { registerUser} from '@/app/actions/auth/registerUser';
 
 export default function SimpleSignupForm() {
 
-      const handleSubmit = (e) => {
+      const handleSubmit = async (e) => {
             e.preventDefault();
             const form = e.target;
             const userName = form.name.value;
             const password = form.password.value;
             const email = form.email.value;
             const data = { userName, email, password }
-            
-            console.log('Signup data:', data);
+            await registerUser(data)
+            // console.log('Signup data:', data);
             // Add your API call here
       };
 
