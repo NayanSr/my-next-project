@@ -1,3 +1,4 @@
+
 'use client'
 import React from 'react'
 import loginImage from '../../../../public/login.jpg'
@@ -14,21 +15,22 @@ const page = () => {
             const form = e.target;
             const password = form.password.value;
             const email = form.email.value;
-            const data = { email, password };
+            console.log(email, password)
             try {
                   const response = await signIn("credentials", { email, password, callbackUrl: "/", redirect: false });
+                  console.log(response)
 
                   if (response.ok) {
                         router.push('/');
                         form.reset()
                   }
                   else {
-                        alert("Login Failed")
+                        alert("Else Login Failed")
                   }
 
             } catch (error) {
                   console.log(error);
-                  alert('Login failed')
+                  alert('Catch Login failed')
             }
             // Add your API call here
       };
@@ -87,4 +89,4 @@ const page = () => {
       )
 }
 
-export default page
+export default page 

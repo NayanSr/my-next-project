@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/app/components/Navbar";
-import { AppContextProvider } from "./context/AppContext";
+import NextAuthProvider from "@/Providers/NextAuthProvider";
+// import { AppContextProvider } from "./context/AppContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,7 +25,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AppContextProvider>
+        {/* <AppContextProvider> */}
+        <NextAuthProvider>
           <div className="min-h-screen flex flex-col justify-between">
             <Navbar />
             <div>
@@ -35,7 +37,8 @@ export default function RootLayout({ children }) {
             </div>
 
           </div>
-        </AppContextProvider>
+          </NextAuthProvider>
+        {/* </AppContextProvider> */}
 
       </body>
     </html>

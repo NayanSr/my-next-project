@@ -1,4 +1,4 @@
-'use client'
+/* 'use client'
 import { createContext, useContext } from "react";
 
 export const AppContext = createContext();
@@ -22,4 +22,4 @@ export const AppContextProvider = (props) => {
             {props.children}
         </AppContext.Provider>
     )
-}
+} */

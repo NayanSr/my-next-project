@@ -2,9 +2,11 @@
 import Image from 'next/image';
 import registerImage from '../../../../public/signup.jpg'
 import Link from 'next/link';
-import { registerUser} from '@/app/actions/auth/registerUser';
+import { registerUser } from '@/app/actions/auth/registerUser';
+import { useRouter } from 'next/navigation';
 
 export default function SimpleSignupForm() {
+      const router = useRouter()
 
       const handleSubmit = async (e) => {
             e.preventDefault();
@@ -13,12 +15,19 @@ export default function SimpleSignupForm() {
             const password = form.password.value;
             const email = form.email.value;
             const data = { userName, email, password }
-            await registerUser(data)
-            // console.log('Signup data:', data);
-            // Add your API call here
+            // await registerUser(data)
+            try {
+                  const response = await registerUser(data)
+                  if (response.acknowledged) {
+                        router.push('/');
+                        form.reset()
+                  }
+            } catch (error) {
+
+            }
       };
 
-    
+
       return (
             <div className="hero bg-orange-900 max-w-4xl mx-auto my-12 py-8 rounded-lg">
                   <div className="hero-content grid grid-cols-12">
@@ -75,8 +84,8 @@ export default function SimpleSignupForm() {
                               <div>
                                     <button className='cursor-pointer w-12 h-12 rounded-full bg-emerald-700 text-rose-400 text-4xl font-semibold'>G</button>
                               </div>
-                               <div className="divider">Have an Account?</div>
-                               <Link href='/signin' className='text-blue-600 underline'>Please Signin</Link>
+                              <div className="divider">Have an Account?</div>
+                              <Link href='/signin' className='text-blue-600 underline'>Please Signin</Link>
                         </div>
                   </div>
             </div>

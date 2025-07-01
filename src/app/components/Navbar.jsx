@@ -1,12 +1,14 @@
 "use client"
-import { useAppContext } from '@/app/context/AppContext';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 import React from 'react'
 
 function Navbar() {
   const pathName = usePathname();
-  const {user} =useAppContext();
+  const {data: session, status}= useSession();
+  // console.log(session)  
+ 
 
 
 
@@ -44,9 +46,12 @@ function Navbar() {
       </div> */}
         <div className="navbar-end">
          <Link className='mr-4' href={'/users'}>Dashboard</Link>
+         {status == "authenticated"?(<button className='btn' onClick={()=>signOut()}>Logout</button>):(<>
          <Link className='mr-4' href={'/signup'}>SignUp</Link>
          <Link className='mr-4' href={'/signin'}>Signin</Link>
-         <Link href={'/*'}>{user?.name? 'Hi' : 'P'}</Link>
+         </>)}
+         
+         {/* <Link href={'/*'}>{user?.name? 'Hi' : 'P'}</Link> */}
         </div>
       </div >
     </div>
