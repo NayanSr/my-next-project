@@ -1,11 +1,23 @@
-import { signIn } from "next-auth/react";
+'use client'
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function SocialLogin() {
+    const router = useRouter()
+    const session = useSession()
+
     const handleSocialLogin = async (providerName) => {
-        console.log(providerName);
-        const result = await signIn(providerName, { redirect: false });
-        console.log(result);
+        signIn(providerName);
+
     }
+    useEffect(() => {
+        if (session?.status == "authenticated") {
+            alert("Logged in successfully")
+            router.push('/');
+        }
+
+    }, [session?.status])
 
     return (
 

@@ -1,5 +1,6 @@
 "use client"
 import { signOut, useSession } from 'next-auth/react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 import React from 'react'
@@ -46,7 +47,11 @@ function Navbar() {
       </div> */}
         <div className="navbar-end">
           <Link className='mr-4 text-xl' href={'/users'}>Dashboard</Link>
-          {status == "authenticated" ? (<button className='btn text-xl' onClick={() => signOut()}>Logout</button>) : (<>
+          {status == "authenticated" ? (<>
+            <Image className='mx-2 rounded-full' src={session?.user?.image} width={40} height={40} alt='Profile Image' />
+            <button className='btn text-xl' onClick={() => signOut()}>Logout</button>
+          </>
+          ) : (<>
             <Link className='mr-4 text-xl' href={'/signup'}>SignUp</Link>
             <Link className='mr-4 text-xl' href={'/signin'}>Signin</Link>
           </>)}
