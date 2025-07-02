@@ -6,9 +6,9 @@ import React from 'react'
 
 function Navbar() {
   const pathName = usePathname();
-  const {data: session, status}= useSession();
+  const { data: session, status } = useSession();
   // console.log(session)  
- 
+
 
 
 
@@ -27,17 +27,17 @@ function Navbar() {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow ">
               <li><Link href={'/'}>Home</Link></li>
               <li><Link href={'/products'}>Products</Link></li>
               <li><Link href={'/about'}>About</Link></li>
             </ul>
           </div>
-          <div className='hidden md:block'>
+          <div className='hidden md:block text-3xl'>
             <ul className="menu menu-horizontal">
-              <li><Link href={'/'}>Home</Link></li>
-              <li><Link href={'/products'}>Products</Link></li>
-              <li><Link href={'/about'}>About</Link></li>
+              <li className='text-xl'><Link href={'/'}>Home</Link></li>
+              <li className='text-xl'><Link href={'/products'}>Products</Link></li>
+              <li className='text-xl'><Link href={'/about'}>About</Link></li>
             </ul>
           </div>
         </div>
@@ -45,13 +45,13 @@ function Navbar() {
         <a className="btn btn-ghost text-xl">daisyUI</a>
       </div> */}
         <div className="navbar-end">
-         <Link className='mr-4' href={'/users'}>Dashboard</Link>
-         {status == "authenticated"?(<button className='btn' onClick={()=>signOut()}>Logout</button>):(<>
-         <Link className='mr-4' href={'/signup'}>SignUp</Link>
-         <Link className='mr-4' href={'/signin'}>Signin</Link>
-         </>)}
-         
-         {/* <Link href={'/*'}>{user?.name? 'Hi' : 'P'}</Link> */}
+          <Link className='mr-4 text-xl' href={'/users'}>Dashboard</Link>
+          {status == "authenticated" ? (<button className='btn text-xl' onClick={() => signOut()}>Logout</button>) : (<>
+            <Link className='mr-4 text-xl' href={'/signup'}>SignUp</Link>
+            <Link className='mr-4 text-xl' href={'/signin'}>Signin</Link>
+          </>)}
+
+          {/* <Link href={'/*'}>{user?.name? 'Hi' : 'P'}</Link> */}
         </div>
       </div >
     </div>

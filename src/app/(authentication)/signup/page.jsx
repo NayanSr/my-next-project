@@ -4,6 +4,7 @@ import registerImage from '../../../../public/signup.jpg'
 import Link from 'next/link';
 import { registerUser } from '@/app/actions/auth/registerUser';
 import { useRouter } from 'next/navigation';
+import SocialLogin from '../signin/components/SocialLogin';
 
 export default function SimpleSignupForm() {
       const router = useRouter()
@@ -82,7 +83,7 @@ export default function SimpleSignupForm() {
                               </form>
                               <div className="divider">OR</div>
                               <div>
-                                    <button className='cursor-pointer w-12 h-12 rounded-full bg-emerald-700 text-rose-400 text-4xl font-semibold'>G</button>
+                                    <SocialLogin />
                               </div>
                               <div className="divider">Have an Account?</div>
                               <Link href='/signin' className='text-blue-600 underline'>Please Signin</Link>

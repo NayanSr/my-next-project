@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { signIn } from "next-auth/react";
 import { useRouter } from 'next/navigation';
+import SocialLogin from './components/SocialLogin';
 
 
 const page = () => {
@@ -78,9 +79,8 @@ const page = () => {
                                     </button>
                               </form>
                               <div className="divider">OR</div>
-                              <div>
-                                    <button className='cursor-pointer w-12 h-12 rounded-full bg-emerald-700 text-rose-400 text-4xl font-semibold'>G</button>
-                              </div>
+
+                              <SocialLogin />
                               <div className="divider">New User?</div>
                               <Link href='/signup' className='text-blue-600 underline'>Please Signup</Link>
                         </div>
