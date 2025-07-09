@@ -57,7 +57,10 @@ export const authOptions = {
                 const usersCollection = dbConnect('users');
                 const isExist = await usersCollection.findOne({ providerAccountId })
                 if (!isExist) {
-                    const payload = { providerAccountId, provider, email: user_email, image, name };
+                    const payload = {
+                        providerAccountId, provider, email:
+                            user_email, image, name
+                    };
                     await usersCollection.insertOne(payload)
                 }
             }

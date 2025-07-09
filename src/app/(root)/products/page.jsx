@@ -8,6 +8,7 @@ const AllProductsPage = async () => {
       // const {products} = useAppContext();
       const productsCollection = dbConnect("products");
       const products = await productsCollection.find({}).toArray();
+      console.log('pd :', products);
 
       // console.log(products)
       return (

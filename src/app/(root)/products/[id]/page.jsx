@@ -16,7 +16,7 @@ const ProductDetailPage = async ({ params }) => {
                         <p className="text-md italic text-gray-800 mb-4">{category}</p>
 
                         <img
-                              src={image}
+                              src={image[0]}
                               alt={name}
                               className="w-[75%] h-auto rounded-lg mb-6 mx-auto"
                         />
