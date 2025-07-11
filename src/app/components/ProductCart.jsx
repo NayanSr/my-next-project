@@ -9,7 +9,12 @@ import Image from 'next/image';
 function ProductCart({ product }) {
   // console.log(product);
   const { _id, name, description, price, image } = product;
-  const productStringify = JSON.stringify(product)
+  const productToPurchaseCart= {_id, name, price, image:image[0]}
+  const productStringify = JSON.stringify(productToPurchaseCart)
+
+
+  // purchase?product={"_id":"685f7766841","userId":"user_2sZFHSQhUhTIhw","name":"ASUS --ok
+  // purchase?product={"_id":"685f7766841","name":"ASUS%20ROG%20Zephyrus%20G16","price":2199.99
 
 
   /*  const handlePurchase = () => {

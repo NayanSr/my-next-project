@@ -28,7 +28,7 @@ const page = () => {
     return (
         <div className=' max-w-4xl mx-auto grid grid-cols-12 my-8 rounded-3xl'>
             <section className='col-span-8 bg-amber-500 text-black p-8 rounded-l-3xl'>
-                <Image src={product?.image[0]} width={350} height={350} alt='image' />
+                <Image src={product?.image} width={350} height={350} alt='image' />
                 <h2 className='text-4xl '>{product.name}</h2>
                 <h4 className='text-2xl'>${product.price}</h4>
             </section>
