@@ -47,6 +47,7 @@ function Navbar() {
       </div> */}
         <div className="navbar-end">
           <Link className='mr-4 text-xl' href={'/users'}>Dashboard</Link>
+          <Link className='mr-4 text-xl ' href={'/cart'}>Cart</Link>
           {status == "authenticated" ? (<>
             <Image className='mx-2 rounded-full' src={session?.user?.image} width={40} height={40} alt='Profile Image' />
             <button className='btn text-xl' onClick={() => signOut()}>Logout</button>

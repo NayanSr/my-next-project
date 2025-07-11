@@ -5,10 +5,15 @@ import React from 'react'
 const ProductDetailPage = async ({ params }) => {
       const { id } = await params;
 
+      const res= await fetch(`http://localhost:3000/api/products/${id}`);
+      const data= await res.json();
+
+      /*
       const productsCollection = dbConnect('products');
       const data = await productsCollection.findOne({ _id: new ObjectId(id) });
+       */
       const { category, image, offerPrice, price, description, name } = data;
-      console.log(data);
+      // console.log(data);
       return (
             <div className='max-w-7xl mx-auto' >
                   <div className="max-w-2xl mx-auto p-6 font-sans bg-white my-8 rounded-2xl">

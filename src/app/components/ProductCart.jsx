@@ -13,17 +13,7 @@ function ProductCart({ product }) {
   const productStringify = JSON.stringify(productToPurchaseCart)
 
 
-  // purchase?product={"_id":"685f7766841","userId":"user_2sZFHSQhUhTIhw","name":"ASUS --ok
-  // purchase?product={"_id":"685f7766841","name":"ASUS%20ROG%20Zephyrus%20G16","price":2199.99
 
-
-  /*  const handlePurchase = () => {
-     // const purchaseProduct = { name: 'Nayan' };
-     // const productJson = JSON.stringify(purchaseProduct); // Correctly stringify
-     // router.push(`/purchase?product=productJson`); // Use a query parameter name
-     console.log('handle clicked');
-   };
-  */
   return (
     <div className="mt-4 card bg-amber-700 w-96 shadow-sm border-2 border-amber-600">
       <figure>

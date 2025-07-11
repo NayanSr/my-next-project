@@ -59,7 +59,7 @@ const page = () => {
                     </button>
                 </div>
                 {/* Checkout Button */}
-                <button onClick={handleCheckout} className='btn btn-primary'>Checkout</button>
+                <button onClick={handleCheckout} className='btn btn-primary'>Add to Cart</button>
             </section>
         </div>
     );
