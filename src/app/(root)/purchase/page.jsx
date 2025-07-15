@@ -28,48 +28,7 @@ const page = () => {
 
 
 
- {
-        // const handleAddToCart = async () => {
-        //     const productInCart = await fetch(`http://localhost:3000/api/cart/${product._id} `);
-        //     const cartData = await productInCart.json();  // current product in productCart  if exist
-        //     const isCurrentUserInOrders = cartData?.orders?.find(person => person?.email ===     session?.user?.email);  // is current user added current product in cart
-        //     console.log('pdInCart:', cartData)
 
-
-        //     try {
-        //         if (!productInCart?.ok) {
-        //             throw new Error('Failed to fetch cart data');
-        //         }
-        //         if (!cartData) {
-        //             // Since this product not exist in productCart collection. So we need to     add current product in addition current product with email & qty
-        //             console.log('Since this product not exist in productCart collection. So  we need to add current product in addition current product with email & qty');
-        //             postToCart(product)
-        //             /* const {orders, ...others}= product;
-        //             const data= {...others, orders:[{email:session?.user?.email, quantity}]} 
-        //             const result= await cartProductsCollection.insertOne(data)
-        //             return result; */
-        //         } else {
-
-        //             if (!isCurrentUserInOrders) {
-        //                 // Since product exist in productCart collection but current user    donot ordered yeat. So push only current user email & ordered qty
-        //                 console.log('Since product exist in productCart collection but   current user donot ordered yeat. So push only current user email & ordered qty')
-        //                 const { orders, ...others } = cartData;    // separating orders  array and others
-        //                 console.log('orders :', orders)
-        //                 console.log('others :', others)
-        //                 const addPd = { ...others, orders: orders.push({ email: session?.    user?.email, quantity }) }
-        //                 console.log(addPd)
-        //             } else {
-        //                 //* Since current product and user ordered previously. So we need to     update only qty
-        //                 console.log('Since current product and user ordered previously. So   we need to update only qty')
-        //             }
-        //         }
-        //         //// console.log('checking:', isCurrentUserInOrders)
-        //         //// console.log('Data from mongodb cart : ', cartData)
-        //     } catch (error) {
-        //         console.error('catch :', error);
-        //     }
-        // }; 
-}
 const handleAddToCart = async () => {
   try {
     const response = await fetch('/api/cart', {
