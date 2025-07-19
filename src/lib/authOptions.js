@@ -11,7 +11,6 @@ export const authOptions = {
     providers: [
         CredentialsProvider({
             name: 'Credentials',
-
             credentials: {
                 email: { label: "Email", type: "text", placeholder: "Enter Password" },
                 password: { label: "Password", type: "password" }
@@ -20,13 +19,7 @@ export const authOptions = {
                 console.log(credentials)
                 const user = await loginUser(credentials);
                 console.log(user)
-                /* const res = await fetch("/your/endpoint", {
-                      method: 'POST',
-                      body: JSON.stringify(credentials),
-                      headers: { "Content-Type": "application/json" }
-                })
-                const user = await res.json()
-*/
+                
 
                 // if (res.ok && user) {
                 if (user) {
@@ -51,6 +44,7 @@ export const authOptions = {
     callbacks: {
         async signIn({ user, account, profile, email, credentials }) {
             // console.log({user,account, profile, email, credentials});
+            console.log({user});
             if (account) {
                 const { providerAccountId, provider } = account;
                 const { email: user_email, image, name } = user;
