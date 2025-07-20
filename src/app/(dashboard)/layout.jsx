@@ -11,6 +11,8 @@ export default function dashboardLayout({ children }) {
           <li><Link href={'/'}>Home</Link></li>
           <li><Link href={'/users'}>Users</Link></li>
           <li><Link href={'/about'}>About</Link></li>
+          <li><Link href={'/addProduct'}>Add New Product</Link></li>
+
         </ul>
       </div>
 
