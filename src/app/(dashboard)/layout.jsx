@@ -13,6 +13,7 @@ export default function dashboardLayout({ children }) {
           <li><Link href={'/about'}>About</Link></li>
           <li><Link href={'/addProduct'}>Add New Product</Link></li>
           <li><Link href={'/manageProducts'}>Manage Products</Link></li>
+          <li><Link href={'/manageUsers'}>Manage Users</Link></li>
 
         </ul>
       </div>
