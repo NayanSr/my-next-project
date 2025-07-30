@@ -15,7 +15,10 @@ export const PATCH= async (req, {params})=>{
 	const body= await req.json();
 	console.log('email :', email, 'body :', body?.Role);
 	const usersCollection= await dbConnect('users');
-	const result= await usersCollection.updateOne({email},{$set:{role:body?.Role}})
+	const result= await usersCollection.updateOne({email},{$set:{wantToBe:body?.Role}})
 
 	return NextResponse.json(result)
 }
+
+
+
