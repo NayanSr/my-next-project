@@ -55,3 +55,10 @@ export const DELETE= async (req,{params})=>{
 
 	return NextResponse.json({result})
 }
+
+//! Get Currently Loggedin User
+export const GET= async(req, {params})=>{
+	const {id}= await params;
+	const result= await dbConnect('users').findOne({email:id});
+	return NextResponse.json(result);
+}

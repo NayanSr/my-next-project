@@ -33,9 +33,9 @@ function ProductCart({ product }) {
 					<h6 className='text-lg'>Offered :${offerPrice}</h6>
 				</div>
 
-			<h6 className='text-lg text-red-600 bg-sky-400'>
-  Save: ${ (price - offerPrice).toFixed(2) }
-</h6>
+				<h6 className='text-lg text-red-600 bg-sky-400 inline-flex w-1/3 pl-2 rounded-md'>
+					Save: ${(price - offerPrice).toFixed(2)}
+				</h6>
 				<div className="card-actions justify-around mt-2 w-full">
 
 					<Link href={`/products/${_id}`} className="btn btn-success text-xl " >Details</Link>

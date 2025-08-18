@@ -2,19 +2,24 @@
 //? Load all products added to cart by current user
 
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
 export default function CartPage() {
 	const [cartItems, setCartItems] = useState([]);  //? cartItem is data in productCart collection
+		console.log(cartItems);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const { data: session, status } = useSession();
+	const router = useRouter();
 	const email = session?.user?.email;
 	const userOrders = [];
+	console.log(session)
 
 	const [showModal, setShowModal] = useState(false);
 	const [selectedItem, setSelectedItem] = useState(null);
 	const [newQuantity, setNewQuantity] = useState(1);
+	
 
 	useEffect(() => {
 		fetch("http://localhost:3000/api/cartProduct")
@@ -30,7 +35,9 @@ export default function CartPage() {
 			.finally(() => setLoading(false));
 	}, []);
 
-	console.log(cartItems);
+
+
+
 
 	if (cartItems) {
 		cartItems.forEach(item => {
@@ -50,12 +57,12 @@ export default function CartPage() {
 	}
 	console.log('only my : ', userOrders);
 
-	let totalOrderedPrice=0
-	let totalOrderedQuantity=0
-	if(userOrders){
-		userOrders.forEach(pd=>{
-			totalOrderedPrice=totalOrderedPrice + pd?.price*pd?.quantity
-			totalOrderedQuantity=totalOrderedQuantity+pd?.quantity
+	let totalOrderedPrice = 0
+	let totalOrderedQuantity = 0
+	if (userOrders) {
+		userOrders.forEach(pd => {
+			totalOrderedPrice = totalOrderedPrice + pd?.price * pd?.quantity
+			totalOrderedQuantity = totalOrderedQuantity + pd?.quantity
 		})
 	}
 	console.log('total:', totalOrderedQuantity, totalOrderedPrice)
@@ -105,13 +112,31 @@ export default function CartPage() {
 		if (!res.ok) { throw new Error('Failed to Delete All item in cart') }
 		const deleteSuccessRes = await res.json();
 		console.log(deleteSuccessRes)
-
-
 	}
+
+	//! now incompleted
+	const handlePlaceOrder = async () => {
+  const res = await fetch('http://localhost:3000/api/placeOrder', {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json', 
+    },
+    body: JSON.stringify(cartItems), //! send only productId, name, description arrat with email quantity
+  });
+  const postSuccess = await res.json();
+  if (postSuccess) {
+    alert('Success');
+  }
+  console.log(postSuccess);
+  console.log(cartItems);
+};
 
 
 
 	if (loading) return <div className="text-black bg-cyan-400 text-center">Loading...</div>;
+	if (!session) {
+		router.push('/signup')
+	}
 	if (error) return <div className="text-white bg-red-700 text-center">Error: {error}</div>;
 
 	return (
@@ -165,7 +190,7 @@ export default function CartPage() {
 								<td></td>
 								<td className="text-amber-700 text-center">Total:</td>
 								<td className="text-amber-600 text-center">{totalOrderedQuantity}</td>
-								<td className="text-amber-600">$ {totalOrderedPrice}</td>
+								<td className="text-amber-600">$ {totalOrderedPrice.toFixed(2)}</td>
 								<td></td>
 							</tr>
 						</tfoot>
@@ -182,9 +207,9 @@ export default function CartPage() {
 				</button>
 				<button
 					className="  my-4  px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg shadow-md transition duration-300"
-					onClick={handleClearCart}
+					onClick={handlePlaceOrder}
 				>
-					Checkout
+					Place Order
 				</button>
 			</div>
 			{/* //? modal start */}

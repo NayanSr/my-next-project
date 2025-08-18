@@ -13,7 +13,7 @@ function Navbar() {
 
 
 
-  if (pathName.includes('users') || pathName.includes('admin')) {
+  if (pathName.includes('users') || pathName.includes('profile')|| pathName.includes('manageProducts')|| pathName.includes('manageUsers')|| pathName.includes('addProduct')  ) {
     return <>
 
     </>
@@ -46,8 +46,9 @@ function Navbar() {
         <a className="btn btn-ghost text-xl">daisyUI</a>
       </div> */}
         <div className="navbar-end">
-          <Link className='mr-4 text-xl' href={'/users'}>Dashboard</Link>
-          <Link className='mr-4 text-xl ' href={'/cart'}>Cart</Link>
+          {session?.user?.email?<Link className='mr-4 text-xl' href={'/users'}>Dashboard</Link>:''}
+
+          {session?.user?.email?<Link className='mr-4 text-xl ' href={'/cart'}>Cart</Link>:''}
           {status == "authenticated" ? (<>
             <Image className='mx-2 rounded-full' src={session?.user?.image} width={40} height={40} alt='Profile Image' />
             <button className='btn text-xl' onClick={() => signOut()}>Logout</button>

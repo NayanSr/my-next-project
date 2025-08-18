@@ -1,8 +1,24 @@
+'use client'
 import Navbar from '@/app/components/Navbar'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function dashboardLayout({ children }) {
+	const [currentUser, setCurrentUser]= useState(null)
+	const {data:session}= useSession();
+	// console.log('sess : ', session);
+	console.log('user :', currentUser)
+	const email= session?.user?.email;
+		useEffect(() => {
+			fetch(`http://localhost:3000/api/manageUsersRoute/${email}`)
+				.then(res => res.json())
+				.then(data => setCurrentUser(data))
+		}, [email])
+	
+
+
+
   return (
     <div className=' max-w-7xl mx-auto  grid grid-cols-12 min-h-screen'>
       <div className='col-span-4 bg-amber-900 pt-2'>
@@ -12,9 +28,11 @@ export default function dashboardLayout({ children }) {
           <li><Link href={'/users'}>Users</Link></li>
           <li><Link href={'/about'}>About</Link></li>
           <li><Link href={'/profile'}>Profile</Link></li>
-          <li><Link href={'/addProduct'}>Add New Product</Link></li>
-          <li><Link href={'/manageProducts'}>Manage Products</Link></li>
-          <li><Link href={'/manageUsers'}>Manage Users</Link></li>
+          {currentUser?.role==='seller'? <li><Link href={'/addProduct'}>Add New Product</Link></li>:''}
+          {currentUser?.role==='seller'?<li><Link href={'/manageProducts'}>Manage Products</Link></li>:''}
+         
+			
+			 {currentUser?.role==='admin'?<li><Link href={'/manageUsers'}>Manage Users</Link></li>:''}
 
         </ul>
       </div>
