@@ -8,7 +8,7 @@ export default function dashboardLayout({ children }) {
 	const [currentUser, setCurrentUser]= useState(null)
 	const {data:session}= useSession();
 	// console.log('sess : ', session);
-	console.log('user :', currentUser)
+	// console.log('user :', currentUser)
 	const email= session?.user?.email;
 		useEffect(() => {
 			fetch(`http://localhost:3000/api/manageUsersRoute/${email}`)
@@ -30,9 +30,11 @@ export default function dashboardLayout({ children }) {
           <li><Link href={'/profile'}>Profile</Link></li>
           {currentUser?.role==='seller'? <li><Link href={'/addProduct'}>Add New Product</Link></li>:''}
           {currentUser?.role==='seller'?<li><Link href={'/manageProducts'}>Manage Products</Link></li>:''}
+          {(currentUser?.role==='seller' || currentUser?.role==='admin')?<li><Link href={'/myOrders'}>My Orders</Link></li>:''}
          
 			
 			 {currentUser?.role==='admin'?<li><Link href={'/manageUsers'}>Manage Users</Link></li>:''}
+			 {(currentUser?.role==='seller' || currentUser?.role==='admin')?<li><Link href={'/manageOrders'}>Manage Orders</Link></li>:''}
 
         </ul>
       </div>

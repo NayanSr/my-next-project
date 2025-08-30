@@ -8,12 +8,14 @@ import { useState, useEffect } from "react";
 export default function CartPage() {
 	const [cartItems, setCartItems] = useState([]);  //? cartItem is data in productCart collection
 		console.log(cartItems);
+	const [orderPd, setOrderPd]= useState([])
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const { data: session, status } = useSession();
 	const router = useRouter();
 	const email = session?.user?.email;
-	const userOrders = [];
+	const userCartProducts = [];
+	const userOrderProduct= [];
 	console.log(session)
 
 	const [showModal, setShowModal] = useState(false);
@@ -29,6 +31,7 @@ export default function CartPage() {
 					setError(data.error);
 				} else {
 					setCartItems(data);
+					
 				}
 			})
 			.catch((err) => setError("Failed to load"))
@@ -43,7 +46,7 @@ export default function CartPage() {
 		cartItems.forEach(item => {
 			item.orders.forEach(order => {
 				if (order.email === email) {
-					userOrders.push({
+					userCartProducts.push({
 						productId: item.productId,
 						name: item.name,
 						image: item.image,
@@ -51,16 +54,29 @@ export default function CartPage() {
 						quantity: order.quantity,
 						total: (order.quantity * item.price).toFixed(2)
 					})
+					userOrderProduct.push({
+						productId: item.productId,
+						name: item.name,
+						price:item.price,
+						userEmail: email,
+						quantity:order.quantity,
+						status:'pending'
+					})
+					//* handleClearCart()
 				}
 			})
 		})
+
+
+
 	}
-	console.log('only my : ', userOrders);
+	// console.log('only my : ', userCartProducts);
+	console.log(userOrderProduct)
 
 	let totalOrderedPrice = 0
 	let totalOrderedQuantity = 0
-	if (userOrders) {
-		userOrders.forEach(pd => {
+	if (userCartProducts) {
+		userCartProducts.forEach(pd => {
 			totalOrderedPrice = totalOrderedPrice + pd?.price * pd?.quantity
 			totalOrderedQuantity = totalOrderedQuantity + pd?.quantity
 		})
@@ -74,7 +90,7 @@ export default function CartPage() {
 		setShowModal(true);
 	};
 	const handleSave = async () => {
-		//TODO: work with it
+		
 		try {
 			const res = await fetch('http://localhost:3000/api/updateQty', {
 				method: 'PATCH',
@@ -121,7 +137,7 @@ export default function CartPage() {
     headers: {
       'Content-Type': 'application/json', 
     },
-    body: JSON.stringify(cartItems), //! send only productId, name, description arrat with email quantity
+    body: JSON.stringify(userOrderProduct),
   });
   const postSuccess = await res.json();
   if (postSuccess) {
@@ -158,7 +174,7 @@ export default function CartPage() {
 							</tr>
 						</thead>
 						<tbody className="divide-y divide-gray-200">
-							{userOrders.map((item, index) => (
+							{userCartProducts.map((item, index) => (
 								<tr key={index} className="hover:bg-gray-50">
 									<td className="px-4 py-3 text-sm text-gray-900">{index + 1}</td>
 									<td className="px-4 py-3 text-sm text-gray-900">{item.name}</td>
