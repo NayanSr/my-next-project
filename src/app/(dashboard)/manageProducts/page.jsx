@@ -26,11 +26,11 @@ export default function Page() {
 				.then(res => res.json())
 				.then(data => {
 					setCurrentUser(data);
-					
+
 				})
-				
+
 		}
-		else{setLoading(false)}
+		else { setLoading(false) }
 	}, [email]);
 
 	// Fetch products ,
@@ -55,7 +55,7 @@ export default function Page() {
 				router.push('/');
 			}
 		}
-		
+
 		if (!currentUser && loading) {
 			if (currentUser?.role !== 'seller') {
 				router.push('/');
@@ -76,7 +76,7 @@ export default function Page() {
 	const handleUpdate = (product) => {
 		setFormData({
 			name: product.name,
-			image: product.image[0],
+			image: [product.image[0]],
 			category: product.category,
 			description: product.description,
 			price: product.price,
@@ -96,6 +96,8 @@ export default function Page() {
 	const handleCloseModal = () => {
 		setShowModal(false);
 	};
+
+
 
 	const handleUpdateSubmit = async () => {
 		if (!productId) return;
