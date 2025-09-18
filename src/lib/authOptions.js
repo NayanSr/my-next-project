@@ -19,7 +19,7 @@ export const authOptions = {
                 console.log(credentials)
                 const user = await loginUser(credentials);
                 console.log(user)
-                
+
 
                 // if (res.ok && user) {
                 if (user) {
@@ -31,7 +31,12 @@ export const authOptions = {
         }),
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            authorization: {
+                params: {
+                    redirect_uri: process.env.NEXT_PUBLIC_REDIRECT_URI,
+                },
+            },
         }),
         GitHubProvider({
             clientId: process.env.GITHUB_ID,
@@ -44,7 +49,7 @@ export const authOptions = {
     callbacks: {
         async signIn({ user, account, profile, email, credentials }) {
             // console.log({user,account, profile, email, credentials});
-            console.log({user});
+            console.log({ user });
             if (account) {
                 const { providerAccountId, provider } = account;
                 const { email: user_email, image, name } = user;

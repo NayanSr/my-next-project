@@ -6,4 +6,5 @@ export default function getUser() {
   const { data: session, status } = useSession();
   return session
 }
+  
  */
