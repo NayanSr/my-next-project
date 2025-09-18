@@ -35,6 +35,7 @@ export const authOptions = {
             authorization: {
                 params: {
                     redirect_uri: process.env.NEXT_PUBLIC_REDIRECT_URI,
+
                 },
             },
         }),
